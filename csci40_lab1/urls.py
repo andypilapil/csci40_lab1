@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from introduction.views import HomePageView, ProfilePageView, KeyPageView, ThisWeekPageView, TodayPageView
+from lab1.views import HomePageView, ProfilePageView, KeyPageView, ThisWeekPageView, TodayPageView
 
 urlpatterns = [
     path('home/', HomePageView),
