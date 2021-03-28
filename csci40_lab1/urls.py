@@ -16,6 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from introduction.views import HomePageView, ProfilePageView, KeyPageView, ThisWeekPageView, TodayPageView
+
 urlpatterns = [
+    path('home/', HomePageView),
+	path('home/home/', HomePageView), #page after user presses submit
+	path('', HomePageView),
     path('admin/', admin.site.urls),
+    path('profile/', ProfilePageView),
+    path('key/', KeyPageView),
+    path('this_week/', ThisWeekPageView),
+    path('today/', TodayPageView),
 ]
