@@ -1,34 +1,28 @@
+{% extends 'base.html' %}
 {% block content %}
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
 	<title>Your Bujo</title>
-	<h1 style="text-align:center; color:lightblue">&#10024; Your Bullet Journal &#10024;</h1>
-	<h2 align='center'>Hello, what is your name?</h2>
+	<h1 class="page-header" align=center>
+		<strong>&#10024; Your Bullet Journal &#10024;</strong>
+	</h1>
+	<h3 align='center'>Hello, what is your name?</h3>
 </head>
 
 <body>
 	<p align='center'>
-		{% if name %}
-	  		Hello, {{name}}! Today is going to be a great day! <br>
+		{% if obj.name %}
+	  		Hello, {{obj.name}}! Today is going to be a great day! <br>
 	  	{% else %}
 	  		<form action='home/' method='POST' align=center>
 		  	{% csrf_token %}
 		  	{{ form }}
-		  	<input type="submit" value="Submit"> <br>
+		  	<button type="submit" class="btn btn-primary">Submit</button>
 		  	</form>
 		{% endif %}
 	</p>
-{% endblock %}
-
-	<p align='center'>
-		<a href="/home" style="color:violet">Home</a> &nbsp;
-		<a href="/profile" style="color:violet">Profile</a> &nbsp;
-		<a href="/key" style="color:violet">Key</a> &nbsp;
-		<a href="/this_week" style="color:violet">This Week</a> &nbsp;
-		<a href="/today" style="color:violet">Today</a>
-	</p>
 </body>
-
 </html>
+{% endblock %}
