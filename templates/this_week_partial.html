@@ -1,0 +1,31 @@
+{% for item in obj %}
+  <tr>
+    <td>{{ item.item_type }}</td>
+    <td>{{ item.item_details }}</td>
+    <td style="width: 260px">
+      <button type="button"
+              class="btn btn-warning btn-sm js-edit-this_week"
+              data-url="{% url 'this_week_edit' item.id %}">
+              <span class="glyphicon glyphicon-pencil"></span> Edit
+      </button>
+      <button type="button"
+              class="btn btn-danger btn-sm js-delete-this_week"
+              data-url="{% url 'this_week_delete' item.id %}">
+              <span class="glyphicon glyphicon-trash"></span> Delete
+      </button>
+      {% if item.item_type == 'Task' %}
+      <button type="submit" 
+              class="btn btn-success btn-sm js-markasdone-this_week" 
+              data-url="{% url 'this_week_markasdone' item.id %}" 
+              method=POST>
+              &check; Mark as done
+      </button>
+      {% endif %}
+    </td>
+  </tr>
+{% empty %}
+  <tr>
+    <td colspan="8" class="text-center bg-warning">No item</td>
+  </tr>
+{% endfor %}
+

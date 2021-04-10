@@ -1,24 +1,41 @@
-{% extends 'home.html' %}
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block javascript %}
+  <script src="{% static 'lab1.js' %}"></script>
+{% endblock %}
+
 {% block content %}
-<!DOCTYPE html>
-<html lang="en">
+  <h1 class="page-header">This Week</h1>
+  <title>This Week</title>
+  <h2 align=center>
+  	<strong>04.11.SUN - 04.17.SAT</strong> 
+  </h2>
 
-<head>
-	<title>This Week</title>
-	<h1 align='center'>&#128197; This Week &#128197;</h1>
-</head>
+  <table class="table" id="table">
+    <thead>
+      <tr>
+        <th>Type of Item</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% include 'this_week_partial.html' %}
+    </tbody>
+  </table>
+  <p align="center">
+    <button type="button" class="btn btn-primary js-create-this_week" data-url="{% url 'this_week_create' %}">
+      <span class="glyphicon glyphicon-plus"></span>
+      Add Item
+    </button>
+  </p>
 
-<body>
-  	<p align='center'>
-	  	<b>03.22.MON - 03.28.SUN</b><br>
-	  	<br>&bull; Dance practice 
-	  	<br>&bull; Write lyrics for new song
-	  	<br>&#9675; Run BTS episode
-	  	<br>&bull; Singing practice
-	  	<br>&#9675; Bighit meeting
-	  	<br>&#8211; remember to relax once in a while
-  	</p>
-</body>
+  <div class="modal fade" id="modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
 
-</html>
+      </div>
+    </div>
+  </div>
 {% endblock %}
