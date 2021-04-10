@@ -1,21 +1,84 @@
-{% extends 'home.html' %}
+{% extends 'base.html' %}
+{% load static %}
 {% block content %}
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
-	<title>Profile</title>
-	<h1 align='center'>&#128156; Profile &#128156;</h1>
-</head>
-
-<body>
-  	<h2 align='center'>
-  	<img src="https://www.bollywoodhungama.com/wp-content/uploads/2020/10/BTS-member-V-breaks-the-internet-as-he-makes-sharp-statement-in-the-photos-from-Variety-cover-shoot-.jpg" alt="Kim Taehyung" height="400"> 
-  	<br>V
-  	</h2>
-  	<h3 align='center'>
-  		Kim Tae-hyung, also known as V, is a South Korean singer, songwriter,<br>and actor. He is one of the vocalists of the popular K-pop group BTS.
-  	</h3>	
+	<h1 class="page-header">Profile</h1>
+	<fieldset class="form-group">
+	    <div class="content-section">
+	    	<p>
+		    	{% if image_obj.image %}
+		    		<img src="{{ image_obj.image.url }}" width="200">
+		    	{% else %}
+		    		<form method="POST" enctype="multipart/form-data" align=center>
+		    			<img src="{% static 'images/default.jpg' %}">
+		    			{% csrf_token %}
+		    			{{ image_form.as_p }}
+		    			<button type="submit" class="btn btn-warning">
+		    				<span class="glyphicon glyphicon-pencil"></span>Change
+		    			</button>
+		    		</form>
+		    	{% endif %}
+		    </p>
+		  	<div> 
+			  	<p align=center>
+			  		{% if nickname_obj.profile_nickname %}
+			  			Nickname: {{ nickname_obj.profile_nickname }}
+			  		{% else %}
+			  			Nickname: Your Nickname
+			  		{% endif %}
+			  		<button class="btn btn-warning" onclick="editNickname()">
+			  			<span class="glyphicon glyphicon-pencil"></span>Edit
+			  		</button>
+			  	</p>
+			  	<p align=center>
+			  		{% if bio_obj.profile_bio %}
+			  			Bio: {{ bio_obj.profile_bio }}
+			  		{% else %}
+			  			Bio: A short description about yourself.
+			  		{% endif %}
+			  		<button class="btn btn-warning" onclick="editBio()">
+			  		<span class="glyphicon glyphicon-pencil"></span>Edit
+			  		</button>
+			  	</p>	
+		    </div>
+		    <div hidden id="edit_nickname_form">
+		    	<form action="" method="POST" align=center>
+		    		{% csrf_token %}
+		    		{{ nickname_form.as_p }}
+		    		<input type="submit" class="btn btn-primary" value="save">
+		    	</form>
+		    </div>
+		    <div hidden id="edit_bio_form">
+		    	<form action="" method="POST" align=center>
+		    		{% csrf_token %}
+		    		{{ bio_form.as_p }}
+		    		<input type="submit" class="btn btn-primary" value="save">
+		    	</form>
+		    </div>
+		</div>
+	</fieldset>
+    <script>
+			var showNicknameForm = document.getElementById("edit_nickname_form");
+			var showBioForm = document.getElementById("edit_bio_form");
+			function editNickname() {
+				if (showNicknameForm.style.display == "none") {
+					showNicknameForm.style.display = "block";
+					showBioForm.style.display = "none";
+				} else {
+					showNicknameForm.style.display = "block";
+					showBioForm.style.display = "none";
+				}
+			}
+			function editBio() {
+				if (showBioForm.style.display == "none") {
+					showBioForm.style.display = "block";
+					showNicknameForm.style.display = "none";
+				} else {
+					showBioForm.style.display = "block";
+					showNicknameForm.style.display = "none";
+				}
+			}
+		</script>
 </body>
 
 </html>
