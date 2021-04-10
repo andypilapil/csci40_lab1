@@ -1,0 +1,22 @@
+{% for key in obj %}
+  <tr>
+    <td>{{ key.key }}</td>
+    <td>{{ key.key_description }}</td>
+    <td style="width: 150px">
+      <button type="button"
+              class="btn btn-warning btn-sm js-edit-key"
+              data-url="{% url 'key_edit' key.id %}">
+        <span class="glyphicon glyphicon-pencil"></span> Edit
+      </button>
+      <button type="button"
+              class="btn btn-danger btn-sm js-delete-key"
+              data-url="{% url 'key_delete' key.id %}">
+        <span class="glyphicon glyphicon-trash"></span> Delete
+      </button>
+    </td>
+  </tr>
+{% empty %}
+  <tr>
+    <td colspan="8" class="text-center bg-warning">No key</td>
+  </tr>
+{% endfor %}

@@ -1,25 +1,39 @@
-{% extends 'home.html' %}
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block javascript %}
+  <script src="{% static 'lab1.js' %}"></script>
+{% endblock %}
+
 {% block content %}
-<!DOCTYPE html>
-<html lang="en">
+  <h1 class="page-header">Key</h1>
+  <title>Key</title>
 
-<head>
-	<title>Key</title>
-	<h1 align='center'>&#128273; Key &#128273;</h1>
-</head>
+  <table class="table" id="table">
+    <thead>
+      <tr>
+        <th>Key</th>
+        <th>Key Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% include 'key_partial.html' %}
+    </tbody>
+  </table>
 
-<body>
-	<p align='center'>
-  		&bull; Tasks: things you have to do
-  		<br>&#8211; Notes: things you don't want to forget
-  		<br>&#9675; Events: noteworth moments in time
-	</p>
+  <p align="center">
+    <button type="button" class="btn btn-primary js-create-key" data-url="{% url 'key_create' %}">
+      <span class="glyphicon glyphicon-plus"></span>
+      Add key
+    </button>
+  </p>
 
-  	<p align='center'>
-  		&bull; Task incomplete
-  		<br>&#10006; Task complete
-  	</p>
-</body>
+  <div class="modal fade" id="modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
 
-</html>
+      </div>
+    </div>
+  </div>
 {% endblock %}
