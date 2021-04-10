@@ -1,0 +1,22 @@
+{% for item in obj %}
+  <tr>
+    <td>{{ item.item_type }}</td>
+    <td>{{ item.item_details }}</td>
+    <td style="width: 150px">
+      <button type="button"
+              class="btn btn-warning btn-sm js-edit-today"
+              data-url="{% url 'today_edit' item.id %}">
+        <span class="glyphicon glyphicon-pencil"></span> Edit
+      </button>
+      <button type="button"
+              class="btn btn-danger btn-sm js-delete-today"
+              data-url="{% url 'today_delete' item.id %}">
+        <span class="glyphicon glyphicon-trash"></span> Delete
+      </button>
+    </td>
+  </tr>
+{% empty %}
+  <tr>
+    <td colspan="8" class="text-center bg-warning">No item</td>
+  </tr>
+{% endfor %}

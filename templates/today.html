@@ -1,23 +1,42 @@
-{% extends 'home.html' %}
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block javascript %}
+  <script src="{% static 'lab1.js' %}"></script>
+{% endblock %}
+
 {% block content %}
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
+  <h1 class="page-header">Today</h1>
   <title>Today</title>
-	<h1 align='center'>&#9925; Today &#9925;</h1>
-</head>
+  <h2 align=center>
+    <strong>04.12.MON</strong> 
+  </h2>
 
-<body>
-  <p align='center'>
-  	<b>03.23.TUES</b><br>
-  	<br>&bull; sign merch
-  	<br>&bull; write some lyrics
-  	<br>&#9675; Vlive
-  	<br>&bull; bring extra clothes
-  	<br>&#8211; full sleep for practice tomorrow
+  <table class="table" id="table">
+    <thead>
+      <tr>
+        <th>Type of Item</th>
+        <th>Details</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% include 'today_partial.html' %}
+    </tbody>
+  </table>
+  <p align="center">
+    <button type="button" class="btn btn-primary js-create-today" data-url="{% url 'today_create' %}">
+      <span class="glyphicon glyphicon-plus"></span>
+      Add Item
+    </button>
   </p>
-</body>
 
-</html>
+  <div class="modal fade" id="modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+      </div>
+    </div>
+  </div>
 {% endblock %}
